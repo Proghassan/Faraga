@@ -24,7 +24,8 @@ wss.on('connection', (ws) => {
 });
 
 // الاستماع على المنفذ الذي توفره Render
-const PORT = process.env.PORT || 443;
+const PORT = process.env.PORT || 3000
 server.listen(PORT, () => {
   console.log(`Secure WebSocket server running on port ${PORT}`);
 });
+
