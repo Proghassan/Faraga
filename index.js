@@ -1,8 +1,9 @@
 const express = require('express');
+const app = express();
 const http = require('http').createServer(app);;
 const fs = require('fs');
 const WebSocket = require('ws');
-const app = express();
+
 
 // Serve static or basic route (optional)
 
@@ -30,5 +31,6 @@ const PORT = process.env.PORT || 3000
 http.listen(PORT, () => {
   console.log(`Secure WebSocket server running on port ${PORT}`);
 });
+
 
 
