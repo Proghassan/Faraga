@@ -1,18 +1,20 @@
 const express = require('express');
-const https = require('https');
+const http = require('http').createServer(app);;
 const fs = require('fs');
 const WebSocket = require('ws');
 const app = express();
 
 // Serve static or basic route (optional)
-app.get('/', (req, res) => {
-  res.send('WebSocket Server is running');
-});
+
 
 // لا تستخدم شهادة SSL يدوياً في Render، لأنه يضيفها تلقائياً
 
-const server = https.createServer(app); // في Render سيستخدم HTTPS تلقائيًا
-const wss = new WebSocket.Server({ server });
+ // في Render سيستخدم HTTPS تلقائيًا
+const wss = new WebSocket.Server({ server:http });
+
+app.get('/', (req, res) => {
+  res.send('WebSocket Server is running');
+});
 
 wss.on('connection', (ws) => {
   console.log('Client connected via wss');
@@ -25,7 +27,8 @@ wss.on('connection', (ws) => {
 
 // الاستماع على المنفذ الذي توفره Render
 const PORT = process.env.PORT || 3000
-server.listen(PORT, () => {
+http.listen(PORT, () => {
   console.log(`Secure WebSocket server running on port ${PORT}`);
 });
+
 
