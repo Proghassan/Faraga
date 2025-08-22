@@ -9,5 +9,5 @@ res.send("hi");
 });
 
 app.listen(port()=>{
-
+console.log("hi");
 });
